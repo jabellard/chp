@@ -18,17 +18,17 @@
 color_map map[] =
 {
 	// reset color (off)
-	{"off", "\[\033[0m\]"},
+	{"off", "\e[0m"},
 	
 	// regular (foreground/text) colors
-	{"black", "\[\033[0;30m\]"},
-	{"red", "\[\033[0;31m\]"},
-	{"green", "\[\033[0;32m\]"},
-	{"yellow", "\[\033[0;33m\]"},
-	{"blue", "\[\033[0;34m\]"},
-	{"purple", "\[\033[0;35m\]"},
-	{"cyan", "\[\033[0;36m\]"},
-	{"white", "\[\033[0;37m\]"},
+	{"black", "\e[0;30m"},
+	{"red", "\e[0;31m"},
+	{"green", "\e[0;32m"},
+	{"yellow", "\e[0;33m"},
+	{"blue", "\e[0;34m"},
+	{"purple", "\e[0;35m"},
+	{"cyan", "\e[0;36m]"},
+	{"white", "\e[0;37m"},
 	{NULL, NULL}
 }; // end map[]
 
@@ -631,7 +631,7 @@ int set_prompt(int permanent)
 			// err
 		} // end if
 		
-		tstr = append_to_string(script_string, "#! /bin/bash\n");
+		tstr = append_to_string(script_string, "#!/bin/bash\n");
 		if (!tstr)
 		{
 			// err
@@ -649,17 +649,6 @@ int set_prompt(int permanent)
 			// err
 		} // end if
 		
-		tstr = append_to_string(script_string, "\n");
-		if (!tstr)
-		{
-			// err
-		} // end if
-		
-		tstr = append_to_string(script_string, "rm -f \"$0\"");
-		if (!tstr)
-		{
-			// err
-		} // end if	
 		
 		// 99rite to the file
 		int result = write(fd, script_string->str, script_string->lenght);
@@ -669,7 +658,7 @@ int set_prompt(int permanent)
 		} // err	
 		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
-		fprintf(stdout, "./%s\n", script_name->str);
+		fprintf(stdout, ". ./%s; rm -f %s\n", script_name->str, script_name->str);
 		return 0;				
 	} // end else 
 } // end set_prompt()
@@ -834,7 +823,7 @@ int set_default_prompt(int default_number, int permanent)
 			// err
 		} // end if
 		
-		tstr = append_to_string(script_string, "#! /bin/bash\n");
+		tstr = append_to_string(script_string, "#!/bin/bash\n");
 		if (!tstr)
 		{
 			// err
@@ -852,17 +841,6 @@ int set_default_prompt(int default_number, int permanent)
 			// err
 		} // end if
 		
-		tstr = append_to_string(script_string, "\n");
-		if (!tstr)
-		{
-			// err
-		} // end if
-		
-		tstr = append_to_string(script_string, "rm -f \"$0\"");
-		if (!tstr)
-		{
-			// err
-		} // end if	
 		
 		// 99rite to the file
 		int result = write(fd, script_string->str, script_string->lenght);
@@ -872,7 +850,7 @@ int set_default_prompt(int default_number, int permanent)
 		} // err	
 		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
-		fprintf(stdout, "./%s\n", script_name->str);
+		fprintf(stdout, ". ./%s; rm -f %s\n", script_name->str, script_name->str);
 		return 0;				
 	} // end else 
 } // end set_default_prompt()
