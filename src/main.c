@@ -14,7 +14,7 @@
 #include <err.h>
 
 // global objects----------------------------------------
-// color map
+// color map R"(\#)"
 color_map map[] =
 {
 	// reset color (off)
@@ -29,7 +29,6 @@ color_map map[] =
 	{"purple", "\[\033[0;35m\]"},
 	{"cyan", "\[\033[0;36m\]"},
 	{"white", "\[\033[0;37m\]"},
-	{"", ""},
 	{NULL, NULL}
 }; // end map[]
 
@@ -670,7 +669,7 @@ int set_prompt(int permanent)
 		} // err	
 		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
-		fprintf(stdout, "%s\n", script_name->str);
+		fprintf(stdout, "./%s\n", script_name->str);
 		return 0;				
 	} // end else 
 } // end set_prompt()
@@ -873,7 +872,7 @@ int set_default_prompt(int default_number, int permanent)
 		} // err	
 		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
-		fprintf(stdout, "%s\n", script_name->str);
+		fprintf(stdout, "./%s\n", script_name->str);
 		return 0;				
 	} // end else 
 } // end set_default_prompt()
