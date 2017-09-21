@@ -1,0 +1,129 @@
+.\" man page for the chp (change prompt) tool
+.TH CHP "1" "September 2017" "chp 2.0" "User commands"
+.SH NAME \"--------------------------------------
+chp \- change the shell prompt.
+.SH SYNOPSIS \"--------------------------------------
+chp <option>...
+.SH DESCRIPTION \"--------------------------------------
+This tool can be used to fully customize the apperance of the shell prompt.
+.SH OPTIONS \"--------------------------------------
+.TP  \"***********************************************
+\-a , -\-bell
+Sound the system bell at each prompt.
+.TP  \"***********************************************
+\-d , -\-date
+Display the date, in "Weekday Month Date" format (e.g., "Tue May 26").
+.TP  \"***********************************************
+\-D <format>, -\-Date <format>
+Display the date in <format> format. The format is passed to strftime(3) and the result is
+inserted into the prompt string; an empty format results in a locale-specific time representation.
+.TP  \"***********************************************
+\-h , -\-host
+Display he hostname, up to the first ‘.’.
+.TP  \"***********************************************
+\-H , -\-Host
+Display the hostname.
+.TP  \"***********************************************
+\-j , -\-Jobs
+Display the number of jobs currently managed by the shell.
+.TP  \"***********************************************
+\-s , -\-shell-name
+Display the name of the shell, the basename of $0 (the portion following the final slash).
+.TP  \"***********************************************
+\-e , -\-escape
+Display an escape character.
+.TP  \"***********************************************
+\-l , -\-shell-base
+Display the basename of the shell’s terminal device name.
+.TP  \"***********************************************
+\-n , -\-new-line
+Display a newline character.
+.TP  \"***********************************************
+\-r , -\-carriage-return
+Display a carriage return character.
+.TP  \"***********************************************
+\-t , -\-time-24hms
+Display the time, in 24-hour HH:MM:SS format.
+.TP  \"***********************************************
+\-T , -\-time-12hms
+Display the time, in 12-hour HH:MM:SS format.
+.TP  \"***********************************************
+\-@ , -\-time-12
+Display the time, in 12-hour am/pm format.
+.TP  \"***********************************************
+\-A , -\-time24hm
+Display the time, in 24-hour HH:MM format.
+.TP  \"***********************************************
+\-u , -\-user
+Display the username of the current user.
+.TP  \"***********************************************
+\-v , -\-bash-version
+Display the version of Bash (e.g., 2.00)
+.TP  \"***********************************************
+\-V , -\-bash-release
+Display the release of Bash, version + patchlevel (e.g., 2.00.0)
+.TP  \"***********************************************
+\-W , -\-current-working-dir
+Display the basename of $PWD, with $HOME abbreviated with a tilde.
+.TP  \"***********************************************
+\-w , -\-current-working-dir-base
+Display the current working directory, with $HOME abbreviated with a tilde (uses the
+$PROMPT_DIRTRIM variable).
+.TP  \"***********************************************
+\-U , -\-is_su
+If the effective uid is 0, display #, otherwise display $.
+.TP  \"***********************************************
+\-k , -\-history-number
+Display the history number of this command.
+.TP  \"***********************************************
+\-c , -\-command-number
+Display the command number of this command.
+.TP  \"***********************************************
+\-f <color>, -\-pfg <color>
+Set the foregorund (i.e., text) color of the prompt string to <color>. <color> must be one of following colors: black, red, green, yello99, blue, purple, cyan, or white.
+.TP  \"***********************************************
+\-1 , -\-default1
+Set the prompt configuration to default configuration 1.
+This configuration is defined in the ~/.chp/default1 file.
+.TP  \"***********************************************
+\-2 , -\-default2
+Set the prompt configuration to default configuration 2.
+This configuration is defined in the ~/.chp/default2 file.
+.TP  \"***********************************************
+\-3 , -\-default3
+Set the prompt configuration to default configuration 3.
+This configuration is defined in the ~/.chp/default3 file.
+.TP  \"***********************************************
+\-4 , -\-default4
+Set the prompt configuration to default configuration 4.
+This configuration is defined in the ~/.chp/default4 file.
+.TP  \"***********************************************
+\-5 , -\-default5
+Set the prompt configuration to default configuration 5.
+This configuration is defined in the ~/.chp/default5 file.
+.TP  \"***********************************************
+\-S <sub_string>, -\-sub-string <sub_string>
+Display sub-string <sub-string> at this position of the prompt string.
+.TP  \"***********************************************
+\-p , -\-permanent
+Make the changes made to the prompt configuration permannent (i.e., applied to all future shell sessions).
+.SH FILES \"--------------------------------------
+The following files are stored in the ~/.chp directory:
+.br
+(1) default1: stores default prompt configuration 1.
+.br
+(2) default2: stores default prompt configuration 2.
+.br
+(3) default3: stores default prompt configuration 3.
+.br
+(4) default4: stores default prompt configuration 4.
+.br
+(5) default5: stores default prompt configuration 5.
+.br
+(6) ps1_config: stores the PS1 configuration to be read by ~/.bashrc
+.br
+.SH SEE ALSO \"--------------------------------------
+See also Ash(1)
+.SH AUTHOR \"--------------------------------------
+.TP 
+Joe Nathan Abellard (github.com/joenatech7)

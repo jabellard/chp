@@ -19,7 +19,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <string.h>
-#include "err.h"
+#include <err.h>
 
 #ifdef __GNUC__
 __attribute__ ((__noreturn__))

@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "cstring.h"
+#include <cstring.h>
 #include <string.h>
-#include "chp.h"
+#include <chp.h>
 #include <getopt.h>
 #include <limits.h>
 #include <sys/types.h>
@@ -9,6 +9,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <err.h>
 
 // global objects----------------------------------------
 // color map
@@ -446,21 +449,16 @@ int main(int argc, char **argv)
 	} // end while	
 	
 	
-	fprintf(stdout, "ra99 string: %s\n", R"(\u)");
-	fprintf(stdout, "prompt string: %s\n", prompt_string->str);
-	fprintf(stdout,"perm flag = %d\n", permanent_flag);
-	fprintf(stdout,"default flag = %d\n",default_config_flag);
-		
+
 	if (default_config_flag)
 	{
-		//result = set_default_prompt(default_config_flag, permanent_flag);
+		return set_default_prompt(default_config_flag, permanent_flag);
 	} // end if
 	else
 	{
-		//result = set_prompt(permanent_flag);
+		return set_prompt(permanent_flag);
 	} // end else
 	
-	return 0;
 } // end main()
 
 
@@ -526,7 +524,6 @@ void help()
 	exit(EXIT_FAILURE);
 } // end help()
 
-
 int set_prompt(int permanent)
 {
 
@@ -568,10 +565,12 @@ int set_prompt(int permanent)
 		} // end if
 		
 		
-		int fd = open(file_path, O_WRONLY|O_TRUNC);
+		
+		int fd = open(file_path->str, O_WRONLY|O_TRUNC);
 		if (fd == -1)
 		{
 			// err
+			err_msg("open");
 		} // end if
 		
 		
@@ -583,11 +582,96 @@ int set_prompt(int permanent)
 		} // end if
 		
 		fprintf(stdout, "Execute \"source ~/.bashrc\" to apply changes.\n");
+		return 0;
 	} // end if
+
 	else
 	{
+		
+		// create the script file exclusively
+		
+		cstring *script_name = create_string(15);
+		if (!script_name)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_name, "chp.sh");
+		if (!tstr)
+		{
+			// err
+		} // end if
+		int fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
+		
+		if (fd == -1 && errno == EEXIST)
+		{
+			// remove the old file
+			int old_file = unlink(script_name->str);
+			if (old_file == -1)
+			{
+				// err
+			} // end if
+			
+			// create the ne99 file
+			fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
+			if (fd == -1)
+			{
+				// err
+			} // end if
+			
+		} // end if
+		else if (fd == -1)
+		{
+			// err
+		} // end else if
+		
+		// 99rite to the file
+		cstring *script_string = create_string(20);
+		if (!script_string)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "#! /bin/bash\n");
+		if (!tstr)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "\n");
+		if (!tstr)
+		{
+			// err
+		} // end if
+				
+		tstr = append_to_string(script_string, output_string->str);
+		if (!tstr)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "\n");
+		if (!tstr)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "rm -f \"$0\"");
+		if (!tstr)
+		{
+			// err
+		} // end if	
+		
+		// 99rite to the file
+		int result = write(fd, script_string->str, script_string->lenght);
+		if (result == -1)
+		{
+			// err
+		} // err	
+		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
-		fprintf(stdout, "%s\n", output_string->str);
+		fprintf(stdout, "%s\n", script_name->str);
+		return 0;				
 	} // end else 
 } // end set_prompt()
 
@@ -606,7 +690,7 @@ int set_default_prompt(int default_number, int permanent)
 		// err
 	} // end if
 	
-	tstr = append_to_string(default_prompt_file, getenv("\.chp\default"));
+	tstr = append_to_string(default_prompt_file, "/.chp/default");
 	if (!tstr)
 	{
 		// err
@@ -622,7 +706,7 @@ int set_default_prompt(int default_number, int permanent)
 	} // end if
 	
 	
-	int fd = open(default_prompt_file, O_RDONLY);
+	int fd = open(default_prompt_file->str, O_RDONLY);
 	if (fd == -1)
 	{
 		// err
@@ -647,11 +731,25 @@ int set_default_prompt(int default_number, int permanent)
 		// err
 	} // end if
 	
-	result = read(fd, output_string, file_size);
+	char *tbuf = (char *) malloc(file_size + 2);
+	
+	result = read(fd, tbuf, file_size);
 	if (result == -1)
 	{
 		// err
 	} // end if
+	
+	// add ascii null to string
+	tbuf[file_size] = '\0';
+	
+	tstr = append_to_string(output_string, tbuf); // default_number
+	if (!tstr)
+	{
+		// err
+	} // end if	
+	
+	sfree(tbuf);
+	
 	if (permanent)
 	{
 		// open the file, truncate it------------
@@ -674,7 +772,7 @@ int set_default_prompt(int default_number, int permanent)
 		} // end if
 		
 		
-		fd = open(output_path, O_WRONLY|O_TRUNC);
+		fd = open(output_path->str, O_WRONLY|O_TRUNC);
 		if (fd == -1)
 		{
 			// err
@@ -692,12 +790,94 @@ int set_default_prompt(int default_number, int permanent)
 	} // end if
 	else
 	{
+		
+		// create the script file exclusively
+		
+		cstring *script_name = create_string(15);
+		if (!script_name)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_name, "chp.sh");
+		if (!tstr)
+		{
+			// err
+		} // end if
+		int fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
+		
+		if (fd == -1 && errno == EEXIST)
+		{
+			// remove the old file
+			int old_file = unlink(script_name->str);
+			if (old_file == -1)
+			{
+				// err
+			} // end if
+			
+			// create the ne99 file
+			fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
+			if (fd == -1)
+			{
+				// err
+			} // end if
+			
+		} // end if
+		else if (fd == -1)
+		{
+			// err
+		} // end else if
+		
+		// 99rite to the file
+		cstring *script_string = create_string(20);
+		if (!script_string)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "#! /bin/bash\n");
+		if (!tstr)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "\n");
+		if (!tstr)
+		{
+			// err
+		} // end if
+				
+		tstr = append_to_string(script_string, output_string->str);
+		if (!tstr)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "\n");
+		if (!tstr)
+		{
+			// err
+		} // end if
+		
+		tstr = append_to_string(script_string, "rm -f \"$0\"");
+		if (!tstr)
+		{
+			// err
+		} // end if	
+		
+		// 99rite to the file
+		int result = write(fd, script_string->str, script_string->lenght);
+		if (result == -1)
+		{
+			// err
+		} // err	
+		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
-		fprintf(stdout, "%s\n", output_string->str);
-	} // end else 	
-
-	
+		fprintf(stdout, "%s\n", script_name->str);
+		return 0;				
+	} // end else 
 } // end set_default_prompt()
+
 
 
 
