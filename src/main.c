@@ -567,7 +567,11 @@ int set_color(const char *color)
 
 void help()
 {
-	fprintf(stderr, "help...\n");
+	fprintf(stderr, "---------------------------------------\n");
+	fprintf(stderr, "Grammar:\n");
+	fprintf(stderr, "chp <option>...\n");
+	fprintf(stderr, "For more info, execute \"man chp\".\n");
+	fprintf(stderr, "---------------------------------------\n");		
 	exit(EXIT_FAILURE);
 } // end help()
 
