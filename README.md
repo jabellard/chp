@@ -1,6 +1,6 @@
 # chp (change prompt) -- version 2.0
 ## I. Features
-    This tool can be used to fully customize the shell prompt.
+    This tool can be used to fully customize the bash shell prompt.
   
 ## II. Instalation Guide
 

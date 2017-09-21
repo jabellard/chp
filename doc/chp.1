@@ -1,11 +1,11 @@
 .\" man page for the chp (change prompt) tool
 .TH CHP "1" "September 2017" "chp 2.0" "User commands"
 .SH NAME \"--------------------------------------
-chp \- change the shell prompt.
+chp \- change prompt.
 .SH SYNOPSIS \"--------------------------------------
 chp <option>...
 .SH DESCRIPTION \"--------------------------------------
-This tool can be used to fully customize the apperance of the shell prompt.
+This tool can be used to fully customize the apperance of the bash shell prompt.
 .SH OPTIONS \"--------------------------------------
 .TP  \"***********************************************
 \-a , -\-bell
@@ -79,8 +79,8 @@ Display the history number of this command.
 \-c , -\-command-number
 Display the command number of this command.
 .TP  \"***********************************************
-\-f <color>, -\-pfg <color>
-Set the foregorund (i.e., text) color of the prompt string to <color>. <color> must be one of following colors: black, red, green, yello99, blue, purple, cyan, or white.
+\-f [b]<color>, -\-fgc [b]<color>
+Set the foregorund (i.e., text) color of the prompt string to <color>. <color> must be one of following colors: black, red, green, yello99, blue, purple, cyan, or white. If the 'b' prefix is specified, then <color> is made bold.
 .TP  \"***********************************************
 \-1 , -\-default1
 Set the prompt configuration to default configuration 1.

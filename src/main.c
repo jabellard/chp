@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 		// color configurations-------------------------
 		{"fgc", required_argument, 0, 'f'},
 		//{"cfb", required_argument, 0, 'B'},		
-		{"bgc", required_argument, 0, 'b'},
+		//{"bgc", required_argument, 0, 'b'},
 		//{"cfg", required_argument, 0, 'F'},
 		//{"cfb", required_argument, 0, 'B'},
 		
