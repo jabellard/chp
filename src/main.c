@@ -131,7 +131,9 @@ int main(int argc, char **argv)
 	// check if string creation 99as successful
 	if (!prompt_string)
 	{
-		// err
+		//fprintf(stderr, "\n");
+		fprintf(stderr, "ERROR: main(): create_string()\n");
+		return 1;		
 	} // end if
 	
 	while (loop && ((opt = getopt_long(argc, argv, opt_string, long_opts, &long_index)) != -1))
@@ -156,7 +158,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\a)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if
 				break;
 			case 'd':
@@ -167,7 +170,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\d)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'D':
@@ -178,19 +182,22 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\D{)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if	
 				
 				tstr = append_to_string(prompt_string, optarg);
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if 
 				
 				tstr = append_to_string(prompt_string, "}");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if				
 
 				break;
@@ -202,7 +209,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\h)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if							
 				break;
 			case 'H':
@@ -213,7 +221,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\H)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'j':
@@ -224,7 +233,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\j)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 's':
@@ -235,7 +245,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\s)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'e':
@@ -246,7 +257,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\e)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if					
 				break;
 			case 'l':
@@ -257,7 +269,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\l)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'n':
@@ -268,7 +281,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\n)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if					
 				break;
 			case 'r':
@@ -279,7 +293,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\r)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 't':
@@ -290,7 +305,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\t)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if					
 				break;
 			case 'T':
@@ -301,7 +317,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\T)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case '@':
@@ -312,7 +329,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\@)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'A':
@@ -323,7 +341,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\A)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'u':
@@ -334,7 +353,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\u)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if					
 				break;
 			case 'v':
@@ -345,7 +365,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\v)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if					
 				break;
 			case 'V':
@@ -356,7 +377,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\V)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'W':
@@ -367,7 +389,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\W)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'w':
@@ -378,7 +401,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\w)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'U':
@@ -389,7 +413,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\$)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'k':
@@ -400,7 +425,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\!)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'c':
@@ -411,7 +437,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, R"(\#)");
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'f':
@@ -424,7 +451,7 @@ int main(int argc, char **argv)
 				if (result)
 				{
 					// err
-					fprintf(stderr, "Invalid color argument: \"%s\"\n", optarg);
+					fprintf(stderr, "ERROR: invalid color argument: \"%s\"\n", optarg);
 					help();
 				} // end if
 				
@@ -437,7 +464,8 @@ int main(int argc, char **argv)
 				tstr = append_to_string(prompt_string, optarg);
 				if (!tstr)
 				{
-					// err
+					fprintf(stderr, "ERROR: main(): append_to_string()\n");
+					return 1;
 				} // end if						
 				break;
 			case 'p':
@@ -462,11 +490,21 @@ int main(int argc, char **argv)
 
 	if (default_config_flag)
 	{
-		return set_default_prompt(default_config_flag, permanent_flag);
+		if (set_default_prompt(default_config_flag, permanent_flag))
+		{
+			fprintf(stderr, "ERROR: main(): set_default_prompt()\n");
+			return 1;		
+		} // end if
+		return 0;
 	} // end if
 	else
 	{
-		return set_prompt(permanent_flag);
+		if (set_prompt(permanent_flag))
+		{
+			fprintf(stderr, "ERROR: main(): set_prompt()\n");
+			return 1;		
+		} // end if
+		return 0;
 	} // end else
 	
 } // end main()
@@ -516,7 +554,7 @@ int set_color(const char *color)
 			if (!tstr)
 			{
 				// err
-				return -1;
+				return 1;
 			}
 			
 			return 0;
@@ -543,13 +581,13 @@ int set_prompt(int permanent)
 	cstring *tstr = append_to_string(output_string, prompt_string->str);
 	if (!tstr)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	tstr = append_to_string(output_string, "\"");
 	if (!tstr)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	if (permanent)
@@ -558,20 +596,20 @@ int set_prompt(int permanent)
 		cstring *file_path = create_string(PATH_MAX);
 		if (!file_path)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		
 		tstr = append_to_string(file_path, getenv("HOME"));
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(file_path, "/.chp/ps1_config");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		
@@ -579,8 +617,7 @@ int set_prompt(int permanent)
 		int fd = open(file_path->str, O_WRONLY|O_TRUNC);
 		if (fd == -1)
 		{
-			// err
-			err_msg("open");
+			return 1;
 		} // end if
 		
 		
@@ -588,7 +625,7 @@ int set_prompt(int permanent)
 		int result = write(fd, output_string->str, output_string->lenght);
 		if (result == -1)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		fprintf(stdout, "Execute \"source ~/.bashrc\" to apply changes.\n");
@@ -603,13 +640,13 @@ int set_prompt(int permanent)
 		cstring *script_name = create_string(15);
 		if (!script_name)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(script_name, "chp.sh");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		int fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
 		
@@ -619,45 +656,45 @@ int set_prompt(int permanent)
 			int old_file = unlink(script_name->str);
 			if (old_file == -1)
 			{
-				// err
+				return 1;
 			} // end if
 			
 			// create the ne99 file
 			fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
 			if (fd == -1)
 			{
-				// err
+				return 1;
 			} // end if
 			
 		} // end if
 		else if (fd == -1)
 		{
-			// err
+			return 1;
 		} // end else if
 		
 		// 99rite to the file
 		cstring *script_string = create_string(20);
 		if (!script_string)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(script_string, "#!/bin/bash\n");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(script_string, "\n");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 				
 		tstr = append_to_string(script_string, output_string->str);
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		
@@ -665,8 +702,8 @@ int set_prompt(int permanent)
 		int result = write(fd, script_string->str, script_string->lenght);
 		if (result == -1)
 		{
-			// err
-		} // err	
+			return 1;
+		} // end if	
 		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
 		fprintf(stdout, ". ./%s; rm -f %s\n", script_name->str, script_name->str);
@@ -680,19 +717,19 @@ int set_default_prompt(int default_number, int permanent)
 	cstring *default_prompt_file = create_string(PATH_MAX);
 	if (!default_prompt_file)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	cstring *tstr = append_to_string(default_prompt_file, getenv("HOME"));
 	if (!tstr)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	tstr = append_to_string(default_prompt_file, "/.chp/default");
 	if (!tstr)
 	{
-		// err
+		return 1;
 	} // end if	
 	
 	// convert int to string
@@ -701,33 +738,33 @@ int set_default_prompt(int default_number, int permanent)
 	tstr = append_to_string(default_prompt_file, default_num); // default_number
 	if (!tstr)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	
 	int fd = open(default_prompt_file->str, O_RDONLY);
 	if (fd == -1)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	int file_size = lseek(fd, 0, SEEK_END);
 	
 	if (file_size == -1)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	int result = lseek(fd, 0, SEEK_SET);
 	if (result == -1)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	output_string = create_string(file_size + 2);
 	if (!output_string)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	char *tbuf = (char *) malloc(file_size + 2);
@@ -735,7 +772,7 @@ int set_default_prompt(int default_number, int permanent)
 	result = read(fd, tbuf, file_size);
 	if (result == -1)
 	{
-		// err
+		return 1;
 	} // end if
 	
 	// add ascii null to string
@@ -744,7 +781,7 @@ int set_default_prompt(int default_number, int permanent)
 	tstr = append_to_string(output_string, tbuf); // default_number
 	if (!tstr)
 	{
-		// err
+		return 1;
 	} // end if	
 	
 	sfree(tbuf);
@@ -755,26 +792,26 @@ int set_default_prompt(int default_number, int permanent)
 		cstring *output_path = create_string(PATH_MAX);
 		if (!output_path)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(output_path, getenv("HOME"));
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if		
 		
 		tstr = append_to_string(output_path, "/.chp/ps1_config");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		
 		fd = open(output_path->str, O_WRONLY|O_TRUNC);
 		if (fd == -1)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		
@@ -782,7 +819,7 @@ int set_default_prompt(int default_number, int permanent)
 		result = write(fd, output_string->str, output_string->lenght);
 		if (result == -1)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		fprintf(stdout, "Execute \"source ~/.bashrc\" to apply changes.\n");
@@ -795,13 +832,13 @@ int set_default_prompt(int default_number, int permanent)
 		cstring *script_name = create_string(15);
 		if (!script_name)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(script_name, "chp.sh");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		int fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
 		
@@ -811,45 +848,45 @@ int set_default_prompt(int default_number, int permanent)
 			int old_file = unlink(script_name->str);
 			if (old_file == -1)
 			{
-				// err
+				return 1;
 			} // end if
 			
 			// create the ne99 file
 			fd = open(script_name->str, O_WRONLY| O_TRUNC| O_CREAT| O_EXCL, S_IRWXU | S_IRWXG);
 			if (fd == -1)
 			{
-				// err
+				return 1;
 			} // end if
 			
 		} // end if
 		else if (fd == -1)
 		{
-			// err
+			return 1;
 		} // end else if
 		
 		// 99rite to the file
 		cstring *script_string = create_string(20);
 		if (!script_string)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(script_string, "#!/bin/bash\n");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		tstr = append_to_string(script_string, "\n");
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 				
 		tstr = append_to_string(script_string, output_string->str);
 		if (!tstr)
 		{
-			// err
+			return 1;
 		} // end if
 		
 		
@@ -857,7 +894,7 @@ int set_default_prompt(int default_number, int permanent)
 		int result = write(fd, script_string->str, script_string->lenght);
 		if (result == -1)
 		{
-			// err
+			return 1;
 		} // err	
 		
 		fprintf(stdout, "To apply changes, execute the follo99ing command:\n");
