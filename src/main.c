@@ -634,6 +634,13 @@ int set_prompt(int permanent)
 		return 1;
 	} // end if
 	
+	// turn off color
+	tstr = append_to_string(output_string, "\e[0m");
+	if (!tstr)
+	{
+		return 1;
+	} // end if	
+	
 	tstr = append_to_string(output_string, "\"");
 	if (!tstr)
 	{
