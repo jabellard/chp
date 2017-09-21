@@ -29,6 +29,17 @@ color_map map[] =
 	{"purple", "\e[0;35m"},
 	{"cyan", "\e[0;36m]"},
 	{"white", "\e[0;37m"},
+	
+	// bold (foreground/text) colors
+	{"bblack", "\e[1;30m"},
+	{"bred", "\e[1;31m"},
+	{"bgreen", "\e[1;32m"},
+	{"byellow", "\e[1;33m"},
+	{"bblue", "\e[1;34m"},
+	{"bpurple", "\e[1;35m"},
+	{"bcyan", "\e[1;36m]"},
+	{"bwhite", "\e[1;37m"},	
+	
 	{NULL, NULL}
 }; // end map[]
 
