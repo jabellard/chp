@@ -11,7 +11,6 @@ cstring * create_string(const int initial_size)
 	// check if the specified size of the string is valid
 	if(initial_size < 1)
 	{
-		fprintf(stderr, "create_string(): Invalid ininitial string size.\n");
 		return NULL;
 	} // end if
 	else
@@ -22,7 +21,6 @@ cstring * create_string(const int initial_size)
 		//check for malloc failure
 		if(!ne99_string)
 		{
-			err_msg("create_string(): malloc");
 			return NULL;
 		} // end if
 		
@@ -33,7 +31,6 @@ cstring * create_string(const int initial_size)
 		//check for malloc failure
 		if(!ne99_string->str)
 		{
-			err_msg("create_string(): malloc");
 			return NULL;
 		} // end if
 		
@@ -90,7 +87,6 @@ cstring * append_to_string(cstring *old_string, const char *postscript)
 			// check for malloc error
 			if (!ne99_string)
 			{
-				err_msg("append_to_string(): malloc");
 				return NULL;
 			} // end if
 			
