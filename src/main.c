@@ -14,7 +14,6 @@
 #include <err.h>
 
 // global objects----------------------------------------
-// color map R"(\#)"
 color_map fg_map[] =
 {
 	// reset color (off)
@@ -43,33 +42,6 @@ color_map fg_map[] =
 	{NULL, NULL}
 }; // end fg_map[]
 
-color_map bg_map[] =
-{
-	// reset color (off)
-	{"off", "\e[0m"},
-	
-	// regular (background) colors
-	{"black", "\e[0;40m"},
-	{"red", "\e[0;41m"},
-	{"green", "\e[0;42m"},
-	{"yellow", "\e[0;43m"},
-	{"blue", "\e[0;44m"},
-	{"purple", "\e[0;45m"},
-	{"cyan", "\e[0;46m]"},
-	{"white", "\e[0;47m"},
-	
-	// bold (background) colors
-	{"bblack", "\e[1;40m"},
-	{"bred", "\e[1;41m"},
-	{"bgreen", "\e[1;42m"},
-	{"byellow", "\e[1;43m"},
-	{"bblue", "\e[1;44m"},
-	{"bpurple", "\e[1;45m"},
-	{"bcyan", "\e[1;46m]"},
-	{"bwhite", "\e[1;47m"},		
-	
-	{NULL, NULL}
-}; // end bg_map[]
 
 // final output string
 cstring *output_string = NULL;
@@ -141,7 +113,7 @@ int main(int argc, char **argv)
 	}; // end long_opts[]
 	
 	// specify possible short options
-	const char *opt_string = "adD:hHjselnrtT@AuvVWwUkcf:b:S:12345p";
+	const char *opt_string = "adD:hHjselnrtT@AuvVWwUkcf:S:12345p";
 	
 	int long_index = 0;
 	int opt = 0;
@@ -475,7 +447,7 @@ int main(int argc, char **argv)
 					break;
 				} // end if	
 						
-				result = set_color(optarg, 1);
+				result = set_color(optarg);
 				if (result)
 				{
 					// err
@@ -483,20 +455,6 @@ int main(int argc, char **argv)
 					help();
 				} // end if
 				break;
-			case 'b':
-				if (default_config_flag)
-				{
-					break;
-				} // end if	
-						
-				result = set_color(optarg, 0);
-				if (result)
-				{
-					// err
-					fprintf(stderr, "ERROR: invalid color argument: \"%s\"\n", optarg);
-					help();
-				} // end if
-				break;			
 			case 'S':
 				if (default_config_flag)
 				{
@@ -582,24 +540,15 @@ cstring * initialize_output_string(cstring *output, char * preamble)
 } // end initialize_output_string()
 
 
-int set_color(const char *color, int foreground)
+int set_color(const char *color)
 {
-	color_map *map = NULL;
-	if (foreground)
-	{
-		map = fg_map;
-	} // end if
-	else
-	{
-		map = bg_map;
-	} // end else
 	int i = 0;
-	while (map[i].name)
+	while (fg_map[i].name)
 	{
-		if (strcmp(map[i].name, color) == 0)
+		if (strcmp(fg_map[i].name, color) == 0)
 		{
 			// append the coresponding color code to the prompt string
-			cstring *tstr = append_to_string(prompt_string, map[i].code);
+			cstring *tstr = append_to_string(prompt_string, fg_map[i].code);
 			
 			if (!tstr)
 			{
